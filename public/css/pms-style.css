@@ -1,0 +1,110 @@
+/* Project Management System custom styles */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container-fluid {
+  padding: 20px 40px;
+}
+
+.hero-header {
+  background: linear-gradient(135deg, #4a90e2, #357ABD);
+  color: white;
+  padding: 60px 40px;
+  border-radius: 8px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-header h1 {
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.hero-header h3 {
+  font-weight: 400;
+  font-size: 1.5rem;
+  max-width: 500px;
+}
+
+.hero-header img {
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.features {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.feature {
+  background: white;
+  border-radius: 8px;
+  padding: 30px 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  flex: 1;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.feature img {
+  max-width: 80px;
+  margin-bottom: 20px;
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #357ABD;
+}
+
+.feature p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.feature a {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.feature a:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  background-color: #357ABD;
+  color: white;
+  padding: 20px 40px;
+  border-radius: 0 0 8px 8px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.footer a {
+  color: #a9d1ff;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
