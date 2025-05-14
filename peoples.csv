@@ -1,0 +1,6 @@
+firstName,lastName,email,password,termsAccepted
+John,Doe,john.doe@example.com,password123,true
+Jane,Smith,jane.smith@example.com,securepass456,true
+Michael,Johnson,michael.j@example.com,mjohnson789,true
+Sarah,Williams,sarah.w@example.com,williams321,true
+Robert,Brown,robert.brown@example.com,brownrob567,true
