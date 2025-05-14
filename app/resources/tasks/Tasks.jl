@@ -1,6 +1,6 @@
 module Tasks
 
-using SearchLight, SearchLight.Validation
+using SearchLight, SearchLight.Validation, Dates
 import Base: @kwdef
 
 export Task
@@ -13,8 +13,8 @@ export Task
   status::String = "pending"
   assigned_to::Union{String, Nothing} = nothing
   due_date::Union{DateTime, Nothing} = nothing
-  created_at::DateTime = now()
-  updated_at::DateTime = now()
+  created_at::DateTime = Dates.now()
+  updated_at::DateTime = Dates.now()
 end
 
 end

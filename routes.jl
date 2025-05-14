@@ -1,5 +1,6 @@
 using Genie.Router
 using Genie.Renderer.Json
+using Genie.Requests
 using CSV
 using DataFrames
 
@@ -29,11 +30,14 @@ end
 
 # Route to handle user signup
 route("/signup", method=POST) do
-    firstName = param("firstName", "")
-    lastName = param("lastName", "")
-    email = param("email", "")
-    password = param("password", "")
-    termsAccepted = param("terms", "false") == "on" ? true : false
+    # Alternative way to retrieve parameters using Genie.Requests.postpayload()
+    payload = Requests.postpayload()
+    
+    firstName = get(payload, "firstName", "")
+    lastName = get(payload, "lastName", "")
+    email = get(payload, "email", "")
+    password = get(payload, "password", "")
+    termsAccepted = get(payload, "terms", "false") == "on" ? true : false
 
     if isempty(email) || isempty(password) || isempty(firstName) || isempty(lastName)
         return json(Dict("status" => "error", "message" => "All fields are required."))
@@ -56,9 +60,17 @@ end
 
 # Route to handle user login
 route("/login", method=POST) do
-    email = param("email", "")
-    password = param("password", "")
-    remember = param("remember", "false") == "on" ? true : false
+    # Alternative way to retrieve parameters using Genie.Requests.jsonpayload()
+    # This assumes the client is sending JSON data. If not, use postpayload() instead
+    payload = try
+        Requests.jsonpayload()
+    catch
+        Requests.postpayload()
+    end
+    
+    email = get(payload, "email", "")
+    password = get(payload, "password", "")
+    remember = get(payload, "remember", false)
 
     if isempty(email) || isempty(password)
         return json(Dict("status" => "error", "message" => "Email and password are required."))
