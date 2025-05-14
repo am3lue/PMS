@@ -6,10 +6,7 @@
     <title>Sign Up - Compass Hardware CMS</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap-grid.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
     <style>
-
-
         :root {
             --primary-color: #4361ee;
             --primary-hover: #3a56d4;
@@ -30,46 +27,28 @@
         }
 
         body {
+            margin: 0;
+            padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-
-
-
-
-
-
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: var(--light-color);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-
-            padding: 2rem;
-            line-height: 1.6;
+            background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #f8f9fa;
+            height: 100vh;
         }
-
-
         .auth-container {
             display: flex;
             width: 100%;
             max-width: 1200px;
             min-height: 80vh;
-
-
             background-color: rgba(30, 41, 59, 0.7);
             border-radius: var(--border-radius);
             overflow: hidden;
-
             box-shadow: var(--box-shadow);
             backdrop-filter: blur(10px);
         }
 
-
         .auth-visualization {
             flex: 1;
-
             padding: 3rem;
             display: flex;
             flex-direction: column;
@@ -119,13 +98,11 @@
             max-width: 500px;
             margin-bottom: 2.5rem;
             background-color: rgba(255, 255, 255, 0.05);
-
             padding: 1.5rem;
             border-radius: var(--border-radius);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: var(--transition);
         }
-
 
         .chart-container:hover {
             transform: translateY(-5px);
@@ -134,39 +111,27 @@
 
         .auth-card {
             flex: 1;
-
-
-
             padding: 3rem;
             background-color: rgba(15, 23, 42, 0.9);
             display: flex;
             flex-direction: column;
         }
 
-
         .auth-header {
-
             margin-bottom: 2.5rem;
         }
-
 
         .auth-logo {
             display: flex;
             align-items: center;
-
             color: var(--primary-color);
             text-decoration: none;
-
-
             margin-bottom: 2rem;
             font-size: 1.3rem;
             font-weight: 600;
         }
 
-
         .auth-logo i {
-
-
             font-size: 1.8rem;
             margin-right: 0.8rem;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -175,23 +140,17 @@
             -webkit-text-fill-color: transparent;
         }
 
-
         .auth-header h1 {
-
-
             color: var(--light-color);
             margin-bottom: 1rem;
             font-size: 2.2rem;
             font-weight: 700;
         }
 
-
         .auth-header p {
-
             color: #94a3b8;
             font-size: 1.1rem;
         }
-
 
         /* Form styling */
         .auth-form {
@@ -204,41 +163,28 @@
             margin-bottom: 1.5rem;
         }
 
-
         .auth-form label {
             display: block;
             margin-bottom: 0.5rem;
-
             color: #e2e8f0;
             font-weight: 500;
         }
-
 
         .input-with-icon {
             position: relative;
         }
 
-
         .input-with-icon i {
             position: absolute;
-
             left: 15px;
             top: 50%;
             transform: translateY(-50%);
-
             color: #94a3b8;
             transition: var(--transition);
         }
 
-
         .input-with-icon input {
-
             width: 100%;
-
-
-
-
-
             padding: 0.8rem 1rem 0.8rem 3rem;
             height: 50px;
             border-radius: var(--border-radius);
@@ -249,60 +195,44 @@
             transition: var(--transition);
         }
 
-
         .input-with-icon input:focus {
             outline: none;
-
-
             border-color: var(--primary-color);
             background-color: rgba(30, 41, 59, 0.8);
             box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
         }
-
 
         .input-with-icon input:focus + i {
             color: var(--primary-color);
         }
 
         .password-strength {
-
             margin-top: 0.8rem;
         }
 
-
         .strength-meter {
-
-
             height: 5px;
             background-color: #334155;
             margin-bottom: 0.5rem;
-
             border-radius: 3px;
             position: relative;
             overflow: hidden;
         }
 
-
         .strength-meter::before {
             content: "";
             height: 100%;
             width: 0;
-
             background-color: var(--error-color);
             position: absolute;
-
             border-radius: 3px;
             transition: width 0.3s, background-color 0.3s;
         }
 
-
         .strength-text {
-
-
             font-size: 0.85rem;
             color: #94a3b8;
         }
-
 
         .terms-checkbox {
             display: flex;
@@ -310,10 +240,7 @@
             margin-bottom: 1.5rem;
         }
 
-
         .terms-checkbox input {
-
-
             margin-right: 0.8rem;
             margin-top: 0.3rem;
             width: 18px;
@@ -321,21 +248,16 @@
             accent-color: var(--primary-color);
         }
 
-
         .terms-checkbox label {
-
             font-size: 0.95rem;
             margin-bottom: 0;
         }
 
-
         .terms-checkbox a {
-
             color: var(--primary-color);
             text-decoration: none;
             transition: var(--transition);
         }
-
 
         .terms-checkbox a:hover {
             color: var(--secondary-color);
@@ -343,31 +265,24 @@
         }
 
         .btn-primary {
-
             background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
             color: white;
             border: none;
-
-
             padding: 0.9rem 0;
             border-radius: var(--border-radius);
             cursor: pointer;
             width: 100%;
             font-weight: 600;
-
             font-size: 1rem;
             transition: var(--transition);
             margin-bottom: 1.5rem;
         }
 
-
         .btn-primary:hover {
-
             background: linear-gradient(135deg, var(--primary-hover), var(--primary-color));
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
         }
-
 
         .auth-divider {
             display: flex;
@@ -376,104 +291,67 @@
             color: #64748b;
         }
 
-
         .auth-divider::before,
         .auth-divider::after {
             content: "";
             flex: 1;
-
             border-bottom: 1px solid #334155;
         }
 
-
         .auth-divider span {
-
-
             padding: 0 15px;
             font-size: 0.9rem;
         }
 
-
         .social-login {
             display: flex;
-
             gap: 1rem;
-
             margin-bottom: 2rem;
         }
-
 
         .btn-social {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-
-
             padding: 0.8rem 0;
             border-radius: var(--border-radius);
             cursor: pointer;
             font-weight: 500;
-
-
             border: 1px solid #334155;
             background-color: transparent;
             color: var(--light-color);
             transition: var(--transition);
         }
 
-
         .btn-social i {
             margin-right: 10px;
             font-size: 1.2rem;
         }
-
-
-
-
 
         .btn-google:hover {
             background-color: rgba(234, 67, 53, 0.1);
             border-color: #ea4335;
         }
 
-
-
-
-
         .btn-github:hover {
             background-color: rgba(255, 255, 255, 0.1);
             border-color: #ffffff;
         }
 
-
-
-
-
-
         .auth-footer {
             text-align: center;
-
             color: #94a3b8;
             margin-top: auto;
             padding-top: 1.5rem;
         }
 
-
         .auth-footer a {
-
             color: var(--primary-color);
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
         }
-
-
-
-
-
-
-
 
         .auth-footer a:hover {
             color: var(--secondary-color);
@@ -483,26 +361,17 @@
         /* Status message styling */
         .status-message {
             padding: 1rem;
-
-
             margin-bottom: 1.5rem;
             border-radius: var(--border-radius);
             display: none;
             font-weight: 500;
         }
 
-
-
-
-
-
-
         .status-success {
             background-color: rgba(56, 176, 0, 0.1);
             border: 1px solid rgba(56, 176, 0, 0.3);
             color: #38b000;
         }
-
 
         .status-error {
             background-color: rgba(230, 57, 70, 0.1);
@@ -517,13 +386,11 @@
             }
             
             .auth-visualization {
-
                 padding: 2rem 1.5rem;
                 order: 2;
             }
             
             .auth-card {
-
                 padding: 2rem 1.5rem;
                 order: 1;
             }
@@ -532,13 +399,6 @@
                 flex-direction: column;
             }
         }
-
-
-
-
-
-
-
 
         @media (max-width: 576px) {
             body {
@@ -557,21 +417,8 @@
                 font-size: 1.5rem;
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
     </style>
 </head>
-
 <body>
     <div class="auth-container">
         <div class="auth-visualization">
@@ -607,7 +454,6 @@
                             <div class="input-with-icon">
                                 <input type="text" id="first-name" name="firstName" required>
                                 <i class="fas fa-user"></i>
-
                             </div>
                         </div>
                     </div>
@@ -617,7 +463,6 @@
                             <div class="input-with-icon">
                                 <input type="text" id="last-name" name="lastName" required>
                                 <i class="fas fa-user"></i>
-
                             </div>
                         </div>
                     </div>
