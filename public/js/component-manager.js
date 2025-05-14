@@ -269,9 +269,67 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.remove('modal-open');
     }
     
-    function addComponent() {
-        const componentId = document.getElementById('component-id').value;
-        const componentName = document.getElementById('component-name').value;
-        const componentType = document.getElementById('component-type').value;
-        const componentSpecs = document.getElementById('component-specs').value;
-        const componentStatus = document.getElementById('component-status').value;
+
+function addComponent() {
+    const componentId = document.getElementById('component-id').value;
+    const componentName = document.getElementById('component-name').value;
+    const componentType = document.getElementById('component-type').value;
+    const componentSpecs = document.getElementById('component-specs').value;
+    const componentStatus = document.getElementById('component-status').value;
+
+    const componentData = {
+        name: componentName,
+        type: componentType,
+        specs: componentSpecs,
+        status: componentStatus
+    };
+
+    if (componentId) {
+        // Update existing component
+        componentData.id = componentId;
+        fetch(`/api/components/${componentId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(componentData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                closeComponentModal();
+                loadComponents(); // Refresh the component list
+                showNotification('Component updated successfully', 'success');
+            } else {
+                showNotification('Failed to update component', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showNotification('An error occurred while updating the component', 'error');
+        });
+    } else {
+        // Add new component
+        fetch('/api/components', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(componentData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                closeComponentModal();
+                loadComponents(); // Refresh the component list
+                showNotification('Component added successfully', 'success');
+            } else {
+                showNotification('Failed to add component', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showNotification('An error occurred while adding the component', 'error');
+        });
+    }
+}})

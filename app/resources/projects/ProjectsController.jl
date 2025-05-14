@@ -13,7 +13,7 @@ function create()
     name = params(:name),
     description = params(:description),
     start_date = DateTime(params(:start_date, now())),
-    end_date = params(:end_date) != nothing ? DateTime(params(:end_date)) : nothing
+    end_date = params(:end_date) !== nothing ? DateTime(params(:end_date)) : nothing
   )
   
   if SearchLight.save!(project)

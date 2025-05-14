@@ -409,24 +409,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function openProjectModal(projectData = null) {
-        // Load components for selection
-        loadComponentsForSelection();
-        
-        // Load team members for selection
-        loadTeamMembersForSelection();
+        // Load components and team members for selection
+        Promise.all([
+            loadComponentsForSelection(),
+            loadTeamMembersForSelection()
+        ]).catch(error => {
+            console.error('Error loading modal data:', error);
+            showNotification('Failed to load required data. Please try again.', 'error');
+        });
         
         const projectModal = document.getElementById('project-modal');
         const modalTitle = projectModal.querySelector('.modal-title');
         const projectForm = document.getElementById('project-form');
         const saveBtn = document.getElementById('save-project');
         
-        // Reset form
+        // Reset form and set default dates
         projectForm.reset();
         
-        // Set today as the default start date
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('project-start-date').value = today;
+        const today = new Date();
+        const defaultEndDate = new Date(today);
+        defaultEndDate.setDate(today.getDate() + 30);
         
-        // Set default end date (30 days from today)
-        const defaultEndDate = new Date();
-        defaultEndDate.setDate(defaultEndDate.getDate() + 30
+        document.getElementById('project-start-date').value = formatDate(today);
+        document.getElementById('project-end-date').value = formatDate(defaultEndDate);
+        
+        // Helper function to format date to YYYY-MM-DD
+        function formatDate(date) {
+            return date.toISOString().split('T')[0];
+        }
+    }
+})

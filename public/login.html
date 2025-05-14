@@ -7,9 +7,322 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap-grid.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/auth-style.css">
+    <style>
+        /* Dark theme with transparency */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #f8f9fa;
+            height: 100vh;
+        }
+        
+        .auth-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .auth-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            min-height: 80vh;
+            background-color: rgba(18, 18, 18, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .auth-visualization {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: none;
+        }
+        
+        .auth-card {
+            flex: 1;
+            padding: 2rem;
+            background-color: rgba(40, 40, 40, 0.7);
+            border-radius: 0;
+        }
+        
+        .auth-header {
+            margin-bottom: 2rem;
+        }
+        
+        .auth-logo {
+            display: flex;
+            align-items: center;
+            color: #4a6cf7;
+            text-decoration: none;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .auth-logo i {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .auth-header h1 {
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .auth-header p {
+            color: #adb5bd;
+        }
+        
+        /* Form styling */
+        .auth-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .auth-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #e9ecef;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+        
+        .input-with-icon input {
+            padding-left: 35px;
+            width: 100%;
+            height: 45px;
+            border-radius: 4px;
+            border: 1px solid #495057;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+        
+        .input-with-icon input:focus {
+            outline: none;
+            border-color: #4a6cf7;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember-me input {
+            margin-right: 0.5rem;
+        }
+        
+        .forgot-password {
+            color: #4a6cf7;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background-color: #4a6cf7;
+            color: white;
+            border: none;
+            padding: 12px 0;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: #3a5ce4;
+        }
+        
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+        
+        .auth-divider::before,
+        .auth-divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #495057;
+        }
+        
+        .auth-divider span {
+            padding: 0 10px;
+            color: #adb5bd;
+        }
+        
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 0;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            border: none;
+            transition: opacity 0.3s;
+        }
+        
+        .btn-social i {
+            margin-right: 10px;
+        }
+        
+        .btn-google {
+            background-color: #ea4335;
+            color: white;
+        }
+        
+        .btn-github {
+            background-color: #333;
+            color: white;
+        }
+        
+        .btn-social:hover {
+            opacity: 0.9;
+        }
+        
+        .auth-footer {
+            text-align: center;
+            color: #adb5bd;
+        }
+        
+        .auth-footer a {
+            color: #4a6cf7;
+            text-decoration: none;
+        }
+        
+        /* Chart styling - Light theme for visualizations */
+        .chart-container {
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 2rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border: none;
+        }
+        
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .stat-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem;
+            box-shadow: none;
+            text-align: center;
+            width: calc(50% - 1rem);
+            transition: transform 0.3s;
+            border: none;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-card h3 {
+            font-size: 2rem;
+            margin: 0;
+            color: #ffffff;
+        }
+        
+        .stat-card p {
+            margin: 0;
+            color: #e9ecef;
+        }
+        
+        .visualization-title {
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #ffffff;
+            font-size: 1.8rem;
+        }
+        
+        @media (max-width: 992px) {
+            .auth-container {
+                flex-direction: column;
+                min-height: auto;
+            }
+            
+            .auth-visualization {
+                padding: 2rem 1rem;
+            }
+            
+            .auth-card {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
 </head>
 <body class="auth-page">
     <div class="auth-container">
+        <div class="auth-visualization">
+            <h2 class="visualization-title">Compass Hardware Analytics</h2>
+            
+            <div class="chart-container">
+                <canvas id="componentsChart"></canvas>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3 id="totalComponents">0</h3>
+                    <p>Total Components</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="activeProjects">0</h3>
+                    <p>Active Projects</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="completionRate">0%</h3>
+                    <p>Completion Rate</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="teamMembers">0</h3>
+                    <p>Team Members</p>
+                </div>
+            </div>
+        </div>
+        
         <div class="auth-card">
             <div class="auth-header">
                 <a href="welcome.html" class="auth-logo">
@@ -69,6 +382,151 @@
         </div>
     </div>
 
-    <script src="js/auth.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <script>
+        // Simulate loading data with animation
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                let value = Math.floor(progress * (end - start) + start);
+                
+                if (id === 'completionRate') {
+                    obj.innerText = value + '%';
+                } else {
+                    obj.innerText = value;
+                }
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Initialize chart with random data
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate stats
+            setTimeout(() => animateValue('totalComponents', 0, 248, 1500), 500);
+            setTimeout(() => animateValue('activeProjects', 0, 12, 1500), 700);
+            setTimeout(() => animateValue('completionRate', 0, 78, 1500), 900);
+            setTimeout(() => animateValue('teamMembers', 0, 24, 1500), 1100);
+            
+            // Create chart
+            const ctx = document.getElementById('componentsChart').getContext('2d');
+            
+            // Set Chart.js default options for light theme in dark background
+            Chart.defaults.color = '#ffffff';
+            Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.1)';
+            
+            const componentsChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Magnetic Sensors',
+                        data: [65, 59, 80, 81, 56, 85],
+                        borderColor: '#4a6cf7',
+                        backgroundColor: 'rgba(74, 108, 247, 0.2)',
+                        tension: 0.4,
+                        fill: true,
+                        borderWidth: 2
+                    }, {
+                        label: 'Microcontrollers',
+                        data: [28, 48, 40, 19, 86, 27],
+                        borderColor: '#ff6384',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        tension: 0.4,
+                        fill: true,
+                        borderWidth: 2
+                    }, {
+                        label: 'Display Units',
+                        data: [45, 25, 16, 36, 67, 18],
+                        borderColor: '#36a2eb',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        tension: 0.4,
+                        fill: true,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Component Inventory Trends'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // Simulate real-time updates
+            setInterval(() => {
+                componentsChart.data.datasets.forEach(dataset => {
+                    dataset.data = dataset.data.map(value => {
+                        const change = Math.floor(Math.random() * 10) - 5;
+                        return Math.max(0, value + change);
+                    });
+                });
+                componentsChart.update();
+            }, 3000);
+            
+            // Add form submission handler
+            const loginForm = document.getElementById('login-form');
+            loginForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+                
+                // Get form data
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const rememberMe = document.getElementById('remember').checked;
+                
+                // Basic validation
+                if (!email || !password) {
+                    alert('Please enter both email and password');
+                    return;
+                }
+                
+                try {
+                    // Send data to the server
+                    const response = await fetch('/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.status === 'success') {
+                        // If remember me is checked, we could store a token in localStorage
+                        if (rememberMe) {
+                            localStorage.setItem('userEmail', email);
+                        }
+                        
+                        alert(data.message);
+                        // Redirect to dashboard or home page on successful login
+                        window.location.href = '/';
+                    } else {
+                        alert(data.message || 'Invalid email or password');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again later.');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
