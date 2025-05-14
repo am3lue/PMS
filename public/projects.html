@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Compass Hardware CMS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/pms-style.css">
+</head>
+<body class="app-page">
+    <nav class="app-nav">
+        <div class="nav-header">
+            <a href="dashboard.html" class="nav-logo">
+                <i class="fas fa-compass"></i>
+                <span>Compass CMS</span>
+            </a>
+            <button class="nav-toggle" id="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="components.html" class="nav-link">
+                    <i class="fas fa-microchip"></i>
+                    <span>Components</span>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a href="projects.html" class="nav-link">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>Projects</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="analytics.html" class="nav-link">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Analytics</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="settings.html" class="nav-link">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <main class="app-main">
+        <header class="app-header">
+            <h1>Projects</h1>
+            <div class="user-menu">
+                <span class="user-name">John Doe</span>
+                <img src="img/avatar.jpg" alt="User Avatar" class="user-avatar">
+                <div class="user-dropdown">
+                    <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                    <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="welcome.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </header>
+        <div class="app-content">
+            <div class="content-header">
+                <div class="header-actions">
+                    <div class="search-container">
+                        <input type="search" id="project-search" placeholder="Search projects...">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-icon" id="filter-projects">
+                            <i class="fas fa-filter"></i>
+                        </button>
+                        <div class="filter-menu" id="filter-menu">
+                            <h4>Filter by Status</h4>
+                            <div class="filter-options">
+                                <label class="filter-option">
+                                    <input type="checkbox" value="planning" checked>
+                                    <span>Planning</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="in-progress" checked>
+                                    <span>In Progress</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="testing" checked>
+                                    <span>Testing</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="checkbox" value="completed" checked>
+                                    <span>Completed</span>
+                                </label>
+                            </div>
+                            <div class="filter-actions">
+                                <button class="btn btn-sm" id="reset-filters">Reset</button>
+                                <button class="btn btn-primary btn-sm" id="apply-filters">Apply</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="new-project-btn">
+                            <i class="fas fa-plus"></i> New Project
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-grid" id="project-list">
+                <!-- Project items will be loaded here -->
+            </div>
+            
+            <!-- Project Modal -->
+            <div class="modal" id="project-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Add New Project</h2>
+                        <button class="modal-close" id="close-modal">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="project-form">
+                            <input type="hidden" id="project-id">
+                            <div class="form-group">
+                                <label for="project-name">Project Name</label>
+                                <input type="text" id="project-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="project-description">Description</label>
+                                <textarea id="project-description" rows="3"></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="project-start-date">Start Date</label>
+                                    <input type="date" id="project-start-date" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="project-end-date">End Date</label>
+                                    <input type="date" id="project-end-date" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="project-status">Status</label>
+                                <select id="project-status">
+                                    <option value="active">Active</option>
+                                    <option value="on-hold">On Hold</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="cancelled">Cancelled</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="project-components">Components</label>
+                                <select id="project-components" multiple>
+                                    <!-- Component options will be loaded dynamically -->
+                                </select>
+                                <small class="form-text">Hold Ctrl/Cmd to select multiple components</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="project-team">Team Members</label>
+                                <select id="project-team" multiple>
+                                    <!-- Team member options will be loaded dynamically -->
+                                </select>
+                                <small class="form-text">Hold Ctrl/Cmd to select multiple team members</small>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" id="cancel-project">Cancel</button>
+                        <button class="btn btn-primary" id="save-project">Save Project</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h2>Project Components</h2>
+                        </div>
+                        <div class="card-body">
+                            <div id="project-components-chart" class="chart-container"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h2>Project Timeline</h2>
+                        </div>
+                        <div class="card-body">
+                            <div id="project-timeline-chart" class="chart-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Project Details Modal -->
+    <div class="modal" id="project-details-modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="detail-project-name">Project Details</h3>
+                    <button class="modal-close" id="close-details-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="project-details-content">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="detail-section">
+                                    <h4>Description</h4>
+                                    <p id="detail-project-description"></p>
+                                </div>
+                                <div class="detail-section">
+                                    <h4>Timeline</h4>
+                                    <div class="detail-timeline">
+                                        <div class="timeline-item">
+                                            <div class="timeline-label">Start Date:</div>
+                                            <div class="timeline-value" id="detail-start-date"></div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-label">End Date:</div>
+                                            <div class="timeline-value" id="detail-end-date"></div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-label">Duration:</div>
+                                            <div class="timeline-value" id="detail-duration"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="detail-section">
+                                    <h4>Status</h4>
+                                    <div class="status-badge" id="detail-status"></div>
+                                </div>
+                                <div class="detail-section">
+                                    <h4>Progress</h4>
+                                    <div class="detail-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress" id="detail-progress"></div>
+                                        </div>
+                                        <span class="progress-text" id="detail-progress-text"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h4>Components</h4>
+                            <div class="component-tags" id="detail-components">
+                                <!-- Component tags will be loaded dynamically -->
+                            </div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h4>Team Members</h4>
+                            <div class="team-members" id="detail-team">
+                                <!-- Team members will be loaded dynamically -->
+                            </div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h4>Recent Updates</h4>
+                            <ul class="update-list" id="detail-updates">
+                                <!-- Updates will be loaded dynamically -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" id="delete-project">Delete</button>
+                    <button class="btn btn-secondary" id="edit-project">Edit</button>
+                    <button class="btn btn-primary" id="close-details">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/projects.js"></script>
+</body>
+</html>
