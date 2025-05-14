@@ -42,3 +42,28 @@ Created by [Adrian Salceanu](https://github.com/essenciary) and awesome contribu
 ---
 
 This README provides a starting point for understanding and using the Project Management System welcome page and its styling.
+
+## Authentication
+
+This application includes user authentication functionality with signup and login features.
+
+- User credentials are stored in a CSV file (`peoples.csv`) located in the project root.
+- Passwords are securely hashed using SHA-256 and Base64 encoding before storage.
+- Signup endpoint: `POST /signup` accepts `firstName`, `lastName`, `email`, `password`, and `terms` (must be accepted).
+- Login endpoint: `POST /login` accepts `email` and `password` and returns user details on success.
+- Static pages for authentication are served at:
+  - `GET /signup` - Signup page
+  - `GET /login` - Login page
+  - `GET /` - Welcome page
+
+### Running and Testing
+
+- Ensure the CSV file `peoples.csv` exists or will be created automatically on first signup.
+- Use the signup page to create new users; duplicate emails are not allowed.
+- Use the login page to authenticate existing users.
+- Passwords are never stored or transmitted in plain text.
+- For development, you can test the endpoints using tools like Curl or Postman.
+
+### Notes
+
+- An authentication initializer file is located at `config/initializers/auth.jl` for future authentication-related setup.
